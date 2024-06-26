@@ -1,14 +1,15 @@
 html {
-     background-color: #0C1615;
+  background-color: #0c1615;
 }
 
-.MuiBottomNavigation-root{
-     background-color: transparent !important;
-
+.MuiBottomNavigation-root {
+  background-color: transparent !important;
 }
 
-.MuiFormControlLabel-root{
-     margin-left: 0;
+.MuiFormControlLabel-root {
+  margin-left: 0;
 }
 
-
+/*.MuiBottomNavigationAction-root {*/
+/*  min-width: 50px;*/
+/*}*/
