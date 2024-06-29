@@ -1,7 +1,7 @@
-import { Box, Modal, Typography } from '@mui/material';
+import {Box, Modal, Typography} from '@mui/material';
 // import {BoostAbility} from "../../../interfaces/interfaces.ts";
-import { containerStyle } from '../../../styles/styles.ts';
-import { Award } from '../../../interfaces/interfaces.ts';
+import {containerStyle} from '../../../styles/styles.ts';
+import {Award} from '../../../interfaces/interfaces.ts';
 
 export interface SimpleDialogProps {
   open: boolean;

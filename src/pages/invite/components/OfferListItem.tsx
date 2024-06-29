@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import { containerStyle } from '../../../styles/styles.ts';
-import { Box, Typography } from '@mui/material';
+import {FC} from 'react';
+import {containerStyle} from '../../../styles/styles.ts';
+import {Box, Typography} from '@mui/material';
 import giftImg from '../../../assets/gift.png';
-import { InviteOffer } from '../../../interfaces/interfaces.ts';
-import { NumericFormat } from 'react-number-format';
+import {InviteOffer} from '../../../interfaces/interfaces.ts';
+import {NumericFormat} from 'react-number-format';
 import DollarIcon from '../../../assets/dollar.svg?react';
 
 interface Props {

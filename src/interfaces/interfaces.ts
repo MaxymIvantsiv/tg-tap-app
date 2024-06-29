@@ -1,4 +1,5 @@
 export interface User {
+  id:string;
   oneTapIncome: number;
   oneHourIncome: number;
   name: string;

@@ -1,7 +1,6 @@
-import { FC } from 'react';
-import { Box, useMediaQuery, useTheme } from '@mui/material';
-import { Outlet } from 'react-router-dom';
-import backgroundImage from '../../assets/background.png';
+import {FC} from 'react';
+import {Box, useMediaQuery, useTheme} from '@mui/material';
+import {Outlet} from 'react-router-dom';
 
 interface Props {}
 

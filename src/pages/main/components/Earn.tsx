@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import { Box, ButtonBase, Stack, Typography } from '@mui/material';
-import { NumericFormat } from 'react-number-format';
+import {FC} from 'react';
+import {Box, ButtonBase, Stack, Typography} from '@mui/material';
+import {NumericFormat} from 'react-number-format';
 import rocketImage from '../../../assets/rocket.png';
 import Arrow from '../../../assets/dashed-arrow.svg?react';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 interface Props {
   balance: number;

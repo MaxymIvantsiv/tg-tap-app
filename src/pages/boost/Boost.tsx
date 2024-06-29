@@ -1,20 +1,26 @@
-import { FC, useState } from 'react';
-import { Box, ButtonBase, Stack, Typography } from '@mui/material';
-import { NumericFormat } from 'react-number-format';
+import {FC, useState} from 'react';
+import {Box, ButtonBase, Stack, Typography} from '@mui/material';
+import {NumericFormat} from 'react-number-format';
 import rocketImage from '../../assets/rocket.png';
-import { BoostAbility, User } from '../../interfaces/interfaces.ts';
-import { mockBoost, mockUser } from '../../mock/mock-data.ts';
+import {BoostAbility, User} from '../../interfaces/interfaces.ts';
+import {mockBoost, mockUser} from '../../mock/mock-data.ts';
 import DollarIcon from '../../assets/dollar.svg?react';
 import ZipperIcon from '../../assets/zipper.svg?react';
 import ArrowIcon from '../../assets/double-arrow.svg?react';
-import { useNavigate } from 'react-router-dom';
-import { containerStyle } from '../../styles/styles.ts';
+import {useNavigate} from 'react-router-dom';
+import {containerStyle} from '../../styles/styles.ts';
 import BoostDialog from './components/BoostDialog.tsx';
+
+// Шлях до вашого файлу useMainPageHook.ts
+import { useMainPageHook } from '../../hooks/useMainPageHook'; // Переконайтеся, що шлях відповідає реальній структурі вашого проекту
+
+// Використовуємо хук для отримання користувача та обробки кліків
+
 
 interface Props {}
 
 const Boost: FC<Props> = () => {
-  const [user] = useState<User>(mockUser);
+  const { user, handleButtonTapClick } = useMainPageHook();
   const [boosts] = useState<BoostAbility[]>(mockBoost);
   const [selectedBoost, setSelectedBoost] = useState<BoostAbility | undefined>(undefined);
   const navigate = useNavigate();

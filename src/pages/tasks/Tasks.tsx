@@ -1,6 +1,6 @@
-import React, { FC, useState } from 'react';
-import { Box, Tab, Tabs, Typography } from '@mui/material';
-import { tasksMock } from '../../mock/mock-data.ts';
+import React, {FC, useState} from 'react';
+import {Box, Tab, Tabs, Typography} from '@mui/material';
+import {tasksMock} from '../../mock/mock-data.ts';
 import TaskListItem from './components/TaskListItem.tsx';
 
 interface Props {}

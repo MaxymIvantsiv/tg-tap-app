@@ -1,7 +1,7 @@
-import { FC, useState } from 'react';
-import { Box, Button, Typography } from '@mui/material';
-import { containerStyle } from '../../styles/styles.ts';
-import { dailyAwardMock } from '../../mock/mock-data.ts';
+import {FC, useState} from 'react';
+import {Box, Button, Typography} from '@mui/material';
+import {containerStyle} from '../../styles/styles.ts';
+import {dailyAwardMock} from '../../mock/mock-data.ts';
 import CheckIcon from '../../assets/check.svg?react';
 import DailyCheckIcon from '../../assets/daily-check.svg?react';
 import AchivementsDialog from './components/AchivementsDialog.tsx';

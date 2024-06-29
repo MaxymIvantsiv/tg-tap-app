@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
-import { BottomNavigation, BottomNavigationAction, Box, Typography, useMediaQuery, useTheme } from '@mui/material';
+import React, {FC} from 'react';
+import {BottomNavigation, BottomNavigationAction, Box, Typography, useMediaQuery, useTheme} from '@mui/material';
 import nav from '../../assets/navigation1.png';
 import TasksIcon from '../../assets/tasks.svg?react';
 import InviteIcon from '../../assets/invite.svg?react';
 import MeIcon from '../../assets/main-page.svg?react';
 import RatingIcon from '../../assets/rating.svg?react';
 import AchivIcon from '../../assets/achivs.svg?react';
-import { Link, useLocation } from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 
 interface Props {}
 

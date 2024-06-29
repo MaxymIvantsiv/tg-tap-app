@@ -1,6 +1,6 @@
-import { FC, useState } from 'react';
-import { Box, Typography } from '@mui/material';
-import { leaderBoardMock } from '../../mock/mock-data.ts';
+import {FC, useState} from 'react';
+import {Box, Typography} from '@mui/material';
+import {leaderBoardMock} from '../../mock/mock-data.ts';
 import adImage from '../../assets/Любовь-к-автомобилям-шапка4 2.png';
 import RatingListItem from './components/RatingListItem.tsx';
 

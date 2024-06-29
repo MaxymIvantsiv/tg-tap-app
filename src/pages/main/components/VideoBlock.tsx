@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { Box, ButtonBase, Link, useMediaQuery, useTheme } from '@mui/material';
+import {FC} from 'react';
+import {Box, ButtonBase, Link, useMediaQuery, useTheme} from '@mui/material';
 import './videoBlock.scss';
 
 interface Props {
@@ -16,7 +16,7 @@ const VideoBlock: FC<Props> = ({ imageUrl, youtubeUrl }) => {
       <Box bgcolor="#182724" color="primary.main" p={'4px'} borderRadius={2}>
         <Box
           borderRadius={1}
-          height={isExtraSmall ? '65px' : '85px'}
+          minHeight={isExtraSmall ? '65px' : '85px'}
           overflow="hidden"
           display="flex"
           alignItems="center"

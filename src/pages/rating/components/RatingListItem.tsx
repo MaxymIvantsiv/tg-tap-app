@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import { LeaderBoardUser } from '../../../interfaces/interfaces.ts';
-import { containerStyle } from '../../../styles/styles.ts';
-import { Box, Typography } from '@mui/material';
+import {FC} from 'react';
+import {LeaderBoardUser} from '../../../interfaces/interfaces.ts';
+import {containerStyle} from '../../../styles/styles.ts';
+import {Box, Typography} from '@mui/material';
 
 interface Props {
   rating: LeaderBoardUser;

@@ -1,6 +1,6 @@
-import { Box, Button, IconButton, InputAdornment, Modal, TextField, Typography } from '@mui/material';
+import {Box, Button, IconButton, InputAdornment, Modal, TextField, Typography} from '@mui/material';
 // import {BoostAbility} from "../../../interfaces/interfaces.ts";
-import { containerStyle } from '../../../styles/styles.ts';
+import {containerStyle} from '../../../styles/styles.ts';
 import CopyIcon from '../../../assets/copy.svg?react';
 import SendInvite from '../../../assets/send-invite.svg?react';
 

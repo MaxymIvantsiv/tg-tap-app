@@ -1,7 +1,7 @@
-import { Box, Button, Modal, Typography } from '@mui/material';
-import { BoostAbility } from '../../../interfaces/interfaces.ts';
+import {Box, Button, Modal, Typography} from '@mui/material';
+import {BoostAbility} from '../../../interfaces/interfaces.ts';
 import DollarIcon from '../../../assets/dollar.svg?react';
-import { containerStyle } from '../../../styles/styles.ts';
+import {containerStyle} from '../../../styles/styles.ts';
 
 export interface SimpleDialogProps {
   open: boolean;

@@ -1,20 +1,12 @@
-import {
-  BoostAbility,
-  DailyAward,
-  Friend,
-  LeaderBoard,
-  LeaderBoardUser,
-  Task,
-  User,
-} from '../interfaces/interfaces.ts';
+import {BoostAbility, DailyAward, Friend, LeaderBoard, LeaderBoardUser, Task, User,} from '../interfaces/interfaces.ts';
 
 export const mockUser: User = {
-  oneTapIncome: 350,
-  oneHourIncome: 2691,
+  oneTapIncome: 1,
+  oneHourIncome: 1,
   name: 'User1',
-  energyPercent: 96,
+  energyPercent: 60,
   isAutoRenew: true,
-  balance: 3501,
+  balance: 0,
   videoUrls: [
     {
       url: 'https://youtu.be/ZlrH4BAj4bU?si=s1WmD6CIdOJMQSeE',
@@ -32,15 +24,15 @@ export const mockBoost: BoostAbility[] = [
     title: 'Multitap',
     description: 'Увеличивает количество монет, которое вы можете заработать за 1 тап по экрану',
     imageUrl: '/src/assets/multitap-boost.svg',
-    price: 12000,
-    level: 12,
+    price: 10,
+    level: 1,
   },
   {
     title: 'Energy limit',
     description: 'Увеличивает количество энергии',
     imageUrl: '/src/assets/energy-boost.svg',
-    price: 12000,
-    level: 12,
+    price: 10,
+    level: 1,
   },
 ];
 

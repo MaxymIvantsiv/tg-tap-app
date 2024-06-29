@@ -1,8 +1,8 @@
-import { FC } from 'react';
-import { containerStyle } from '../../../styles/styles.ts';
-import { Avatar, Box, Typography } from '@mui/material';
-import { Friend } from '../../../interfaces/interfaces.ts';
-import { NumericFormat } from 'react-number-format';
+import {FC} from 'react';
+import {containerStyle} from '../../../styles/styles.ts';
+import {Avatar, Box, Typography} from '@mui/material';
+import {Friend} from '../../../interfaces/interfaces.ts';
+import {NumericFormat} from 'react-number-format';
 import DollarIcon from '../../../assets/dollar.svg?react';
 import RobotIcon from '../../../assets/robot.svg?react';
 
