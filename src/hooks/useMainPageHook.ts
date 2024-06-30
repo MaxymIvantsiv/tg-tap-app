@@ -99,13 +99,12 @@ export const useMainPageHook = () => {
         setUser(resUser);
         await saveCurrentUser();
     };
-	WebApp.ready(() => {
-		sendMessage('Hello, server!');
-		loadOrCreateUser();
-	});
     useEffect(() => {
         checkConnection();
 		WebApp.ready();
+		WebApp.expand();
+		sendMessage('Hello, server!');
+		loadOrCreateUser();
     }, []);
 	
     return { user, handleButtonTapClick };
