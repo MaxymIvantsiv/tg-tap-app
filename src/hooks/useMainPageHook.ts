@@ -1,18 +1,12 @@
-import {SERVER_URL} from "../../api/requests.tsx";
-import {User} from "../interfaces/interfaces.ts";
-import {useEffect, useState} from "react";
-import {mockUser} from "../mock/mock-data.ts";
-
-declare global {
-  interface Window {
-    Telegram: any;
-  }
-}
+import { SERVER_URL } from "../../api/requests.tsx";
+import { User } from "../interfaces/interfaces.ts";
+import { useEffect, useState } from "react";
+import { mockUser } from "../mock/mock-data.ts";
+import WebApp from '@twa-dev/sdk'
 
 export const useMainPageHook = () => {
     const [user, setUser] = useState<User>(mockUser);
-    const [tg, setTg] = useState<any>(null);
-	
+
     const saveCurrentUser = async () => {
         if (user) {
             await fetch(`${SERVER_URL}/users`, {
@@ -31,9 +25,10 @@ export const useMainPageHook = () => {
     const handleButtonTapClick = async () => {
         if (user) {
             if (user.energyPercent >= 1) {
+				WebApp.showAlert('Tg inited!');
                 user.balance = user.balance + user.oneTapIncome;
                 user.energyPercent = user.energyPercent - 1;
-                setUser({...user});
+                setUser({ ...user });
                 await saveCurrentUser();
             }
         } else {
@@ -56,12 +51,8 @@ export const useMainPageHook = () => {
     };
 
     const loadOrCreateUser = async () => {
-        if (!tg || !tg.initDataUnsafe || !tg.initDataUnsafe.user) {
-            console.error("Telegram WebApp object is not initialized or user data is not available.");
-            return;
-        }
-
-        const telegramUserId = tg.initDataUnsafe.user.id;
+        // Assuming user ID is obtained from another source or context
+        const telegramUserId = "example_user_id"; // Replace this with actual user ID
         const response = await fetch<User[]>(`${SERVER_URL}/users`);
         const users = await response.json();
         let resUser = users.find((user: User) => user.id === telegramUserId);
@@ -77,20 +68,13 @@ export const useMainPageHook = () => {
             });
         }
         setUser(resUser);
+        await saveCurrentUser();
     };
 
     useEffect(() => {
-        if (window.Telegram && window.Telegram.WebApp) {
-            setTg(window.Telegram.WebApp);
-        }
+        checkConnection();
+        loadOrCreateUser();
     }, []);
 
-    useEffect(() => {
-        if (tg) {
-            checkConnection();
-            loadOrCreateUser();
-        }
-    }, [tg]);
-
-    return {user, handleButtonTapClick}
+    return { user, handleButtonTapClick };
 }
