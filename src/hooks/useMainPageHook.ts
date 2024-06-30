@@ -75,6 +75,7 @@ export const useMainPageHook = () => {
         let telegramUserId = null;
 		let tgData = WebApp.initData;
 		sendMessage('Init Data ' + tgData);
+		sendMessage('Init Data Unsafe ' + WebApp.initDataUnsafe);
 		if (tgData != null && tgData.user != null) {
 			telegramUserId = tgData.user.id;
 		}
