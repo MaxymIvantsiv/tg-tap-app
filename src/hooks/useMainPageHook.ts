@@ -51,7 +51,9 @@ export const useMainPageHook = () => {
 
     const loadOrCreateUser = async () => {
         // Assuming user ID is obtained from another source or context
-        const telegramUserId = WebApp.initDataUnsafe.user.id;
+		WebApp.ready();
+        const telegramUserId = WebApp.initData.user.id;
+		alert(telegramUserId);
         const response = await fetch<User[]>(`${SERVER_URL}/users`);
         const users = await response.json();
         let resUser = users.find((user: User) => user.id === telegramUserId);
@@ -72,7 +74,6 @@ export const useMainPageHook = () => {
 
     useEffect(() => {
         checkConnection();
-		WebApp.ready();
         loadOrCreateUser();
     }, []);
 
