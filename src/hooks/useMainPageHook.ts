@@ -97,13 +97,10 @@ export const useMainPageHook = () => {
     };
     useEffect(() => {
         checkConnection();
-    }, []);
-	
-	WebApp.ready(() => {
-        // Ваш код для перевірки з'єднання
-        sendMessage('telegram ready');
 	    loadOrCreateUser();
-    });
+		WebApp.ready();
+		sendMessage('telegram ready');
+    }, []);
 	
     return { user, handleButtonTapClick };
 }
