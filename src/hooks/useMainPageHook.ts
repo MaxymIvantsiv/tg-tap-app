@@ -3,17 +3,16 @@ import {User} from "../interfaces/interfaces.ts";
 import {useEffect, useState} from "react";
 import {mockUser} from "../mock/mock-data.ts";
 
-const TelegramWebApp = () => {
-  const [tg, setTg] = useState(null);
-
-  useEffect(() => {
-    if (window.Telegram && window.Telegram.WebApp) {
-      setTg(window.Telegram.WebApp);
-    }
-  }, []);
 export const useMainPageHook = () => {
     const [user, setUser] = useState<User>(mockUser);
+	const TelegramWebApp = () => {
+	  const [tg, setTg] = useState(null);
 
+	  useEffect(() => {
+		if (window.Telegram && window.Telegram.WebApp) {
+		  setTg(window.Telegram.WebApp);
+		}
+	  }, []);
     const saveCurrentUser = async () => {
         if (user) {
             await fetch(`${SERVER_URL}/users`, {
