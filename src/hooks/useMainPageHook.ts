@@ -50,7 +50,7 @@ export const useMainPageHook = () => {
     };
 
     const loadOrCreateUser = async () => {
-        const telegramUserId = null;
+        let telegramUserId = null;
 		let tgData: WebAppInitData = WebApp.initDataUnsafe;
 		if (tgData != null && tgData.user != null) {
 			telegramUserId = tgData.user.id;
