@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { mockUser } from "../mock/mock-data.ts";
 import WebApp from '@twa-dev/sdk'
 
-const onLoad = false;
+loadOrCreateUser();
 export const useMainPageHook = () => {
     const [user, setUser] = useState<User>(mockUser);
 	
@@ -98,12 +98,6 @@ export const useMainPageHook = () => {
     useEffect(() => {
         checkConnection();
     }, []);
-    
-	if(onLoad == false)
-	{
-		loadOrCreateUser();
-		onLoad = true;
-	}
 	
     return { user, handleButtonTapClick };
 }
