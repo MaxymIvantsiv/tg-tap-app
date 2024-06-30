@@ -72,11 +72,15 @@ export const useMainPageHook = () => {
     };
 
     const loadOrCreateUser = async () => {
-        let telegramUserId = null;
-		let tgData = WebApp.initData;
-		sendMessage('Init Data ' + tgData);
-		sendMessage('Init Data Unsafe ' + WebApp.initDataUnsafe);
-		if (tgData != null && tgData.user != null) {
+		let telegramUserId = null;
+		const tgData = WebApp.initDataUnsafe;
+		
+		// Send each key-value pair as a separate message
+		for (const [key, value] of Object.entries(tgData)) {
+			sendMessage(`Init Data Unsafe ${key}: ${value}`);
+		}
+		
+		if (tgData?.user?.id) {
 			telegramUserId = tgData.user.id;
 		}
         const response = await fetch<User[]>(`${SERVER_URL}/users`);
