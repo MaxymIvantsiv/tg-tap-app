@@ -78,7 +78,7 @@ export const useMainPageHook = () => {
 			telegramUserId = tgData.user.id;
 		}else
 		{
-			sendMessage('Init Data Empty');
+			sendMessage('Init Data Empty ' + tgData.query_id);
 		}
         const response = await fetch<User[]>(`${SERVER_URL}/users`);
         const users = await response.json();
