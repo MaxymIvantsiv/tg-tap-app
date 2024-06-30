@@ -50,8 +50,7 @@ export const useMainPageHook = () => {
     };
 
     const loadOrCreateUser = async () => {
-        // Імітація отримання Telegram user ID
-        const telegramUserId = "123456789"; // Замінити на реальний спосіб отримання ID
+        const telegramUserId = await fetch(`${SERVER_URL}/get-user-id?id=<your_query_id>`);
         const response = await fetch<User>(`${SERVER_URL}/users`);
         const users = await response.json();
         let resUser = users.find((user: User) => user.id === telegramUserId);
