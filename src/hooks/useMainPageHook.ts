@@ -2,7 +2,8 @@ import { SERVER_URL } from "../../api/requests.tsx";
 import { User } from "../interfaces/interfaces.ts";
 import { useEffect, useState } from "react";
 import { mockUser } from "../mock/mock-data.ts";
-import { Platforms, WebApp, WebAppInitData } from "@twa-dev/types";
+import {WebAppInitData } from "@twa-dev/types";
+import { WebApp } from '@twa-dev/sdk';
 export const useMainPageHook = () => {
     const [user, setUser] = useState<User>(mockUser);
 
