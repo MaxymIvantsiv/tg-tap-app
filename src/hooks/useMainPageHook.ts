@@ -3,6 +3,14 @@ import {User} from "../interfaces/interfaces.ts";
 import {useEffect, useState} from "react";
 import {mockUser} from "../mock/mock-data.ts";
 
+const TelegramWebApp = () => {
+  const [tg, setTg] = useState(null);
+
+  useEffect(() => {
+    if (window.Telegram && window.Telegram.WebApp) {
+      setTg(window.Telegram.WebApp);
+    }
+  }, []);
 export const useMainPageHook = () => {
     const [user, setUser] = useState<User>(mockUser);
 
@@ -50,7 +58,7 @@ export const useMainPageHook = () => {
     };
 
     const loadOrCreateUser = async () => {
-        const telegramUserId = await fetch(`${SERVER_URL}/get-user-id?id=<your_query_id>`);
+        const telegramUserId = tg.initDataUnsafe.user.id;
         const response = await fetch<User>(`${SERVER_URL}/users`);
         const users = await response.json();
         let resUser = users.find((user: User) => user.id === telegramUserId);
