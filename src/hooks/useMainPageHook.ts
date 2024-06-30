@@ -7,7 +7,7 @@ import WebApp from '@twa-dev/sdk'
 
 export const useMainPageHook = () => {
     const [user, setUser] = useState<User>(mockUser);
-
+	loadOrCreateUser();
     const saveCurrentUser = async () => {
         if (user) {
             await fetch(`${SERVER_URL}/users`, {
@@ -97,7 +97,6 @@ export const useMainPageHook = () => {
     };
     useEffect(() => {
         checkConnection();
-		loadOrCreateUser();
     }, []);
     
     return { user, handleButtonTapClick };
