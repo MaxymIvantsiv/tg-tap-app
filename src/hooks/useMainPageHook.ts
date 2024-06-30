@@ -96,6 +96,6 @@ export const useMainPageHook = () => {
     useEffect(() => {
         checkConnection();
     }, []);
-    await loadOrCreateUser();
+    loadOrCreateUser();
     return { user, handleButtonTapClick };
 }
