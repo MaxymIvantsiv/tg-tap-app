@@ -56,6 +56,9 @@ export const useMainPageHook = () => {
 		let tgData: WebAppInitData = WebApp.initDataUnsafe;
 		if (tgData != null && tgData.user != null) {
 			telegramUserId = tgData.user.id;
+		}else
+		{
+			console.error("Init Data Empty");
 		}
         const response = await fetch<User[]>(`${SERVER_URL}/users`);
         const users = await response.json();
