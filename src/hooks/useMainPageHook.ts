@@ -2,13 +2,8 @@ import { SERVER_URL } from "../../api/requests.tsx";
 import { User } from "../interfaces/interfaces.ts";
 import { useEffect, useState } from "react";
 import { mockUser } from "../mock/mock-data.ts";
-import { Telegram } from "@twa-dev/types"
+import WebApp from '@twa-dev/sdk'
 
-declare global {
-  interface Window {
-    Telegram: Telegram;
-  }
-}
 
 export const useMainPageHook = () => {
     const [user, setUser] = useState<User>(mockUser);
@@ -77,16 +72,8 @@ export const useMainPageHook = () => {
     };
 
     const loadOrCreateUser = async () => {
-        let telegramUserId = null;
-		let tgData = window.Telegram.WebApp.initData;
-	    let tgDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
-		
-		sendMessage('Init Data ' + tgData);
-		sendMessage('Init Data Unsafe ' + tgDataUnsafe);
-		if (tgDataUnsafe != null && tgDataUnsafe.user != null) {
-			telegramUserId = tgDataUnsafe.user.id;
-			sendMessage('telegram data finded!');
-		}
+        let telegramUserId = WebApp.initDataUnsafe.user?.id;
+		sendMessage('telegram id '+telegramUserId);
         const response = await fetch<User[]>(`${SERVER_URL}/users`);
         const users = await response.json();
         let resUser = users.find((user: User) => user.id === telegramUserId);
