@@ -64,6 +64,7 @@ export const useMainPageHook = () => {
                 throw new Error('Network response was not ok');
             }
             const data = await response.text();
+			sendMessage(data);
         } catch (error) {
             console.error('Error checking connection:', error);
         }
@@ -96,11 +97,13 @@ export const useMainPageHook = () => {
     };
     useEffect(() => {
         checkConnection();
-		loadOrCreateUser();
-	    WebApp.ready();
     }, []);
 	
-	
+	WebApp.ready(() => {
+        // Ваш код для перевірки з'єднання
+        sendMessage('telegram ready');
+	    loadOrCreateUser();
+    });
 	
     return { user, handleButtonTapClick };
 }
