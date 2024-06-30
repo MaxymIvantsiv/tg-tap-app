@@ -101,12 +101,12 @@ export const useMainPageHook = () => {
     };
     useEffect(() => {
         checkConnection();
-		sendMessage('Hello, server!');
 		const script = document.createElement('script');
 		script.src = 'https://telegram.org/js/telegram-web-app.js';
 		script.async = true;
 		script.onload = () => {
-		window.Telegram.WebApp.showAlert('Hey there!');
+		let user_id = window.Telegram.WebApp.initDataUnsafe.user.id;
+		sendMessage('Hello, server! I am ' + user_id);
     };
     document.body.appendChild(script);
 		loadOrCreateUser();
