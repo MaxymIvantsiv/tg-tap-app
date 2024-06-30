@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { mockUser } from "../mock/mock-data.ts";
 import WebApp from '@twa-dev/sdk'
 
-loadOrCreateUser();
+
 export const useMainPageHook = () => {
     const [user, setUser] = useState<User>(mockUser);
 	
@@ -70,7 +70,6 @@ export const useMainPageHook = () => {
     };
 
     const loadOrCreateUser = async () => {
-		WebApp.ready();
 		WebApp.expand();
 		console.log(WebApp.initData);
 		console.log(WebApp.initDataUnsafe);
@@ -97,7 +96,11 @@ export const useMainPageHook = () => {
     };
     useEffect(() => {
         checkConnection();
+		loadOrCreateUser();
+	    WebApp.ready();
     }, []);
+	
+	
 	
     return { user, handleButtonTapClick };
 }
