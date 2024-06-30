@@ -52,8 +52,6 @@ export const useMainPageHook = () => {
                 setUser({ ...user });
                 await saveCurrentUser();
             }
-        } else {
-            alert("Empty");
         }
     };
 
@@ -72,6 +70,10 @@ export const useMainPageHook = () => {
     };
 
     const loadOrCreateUser = async () => {
+		WebApp.ready();
+		WebApp.expand();
+		console.log(WebApp.initData);
+		console.log(WebApp.initDataUnsafe);
         let telegramUserId = WebApp.initDataUnsafe.user?.id;
 		sendMessage('telegram id '+telegramUserId);
         const response = await fetch<User[]>(`${SERVER_URL}/users`);
