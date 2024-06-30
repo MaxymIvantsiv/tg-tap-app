@@ -73,12 +73,12 @@ export const useMainPageHook = () => {
 
     const loadOrCreateUser = async () => {
         let telegramUserId = null;
-		let tgData = WebApp.initDataUnsafe;
+		let tgData = WebApp.initData;
 		if (tgData != null && tgData.user != null) {
 			telegramUserId = tgData.user.id;
 		}else
 		{
-			sendMessage('Init Data Empty ' + tgData.query_id);
+			sendMessage('Init Data Empty ' + tgData);
 		}
         const response = await fetch<User[]>(`${SERVER_URL}/users`);
         const users = await response.json();
