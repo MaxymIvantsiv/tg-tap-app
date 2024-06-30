@@ -77,6 +77,8 @@ export const useMainPageHook = () => {
 
     useEffect(() => {
         checkConnection();
+	    console.log(WebApp.initData);
+		console.log(WebApp.initDataUnsafe);
         loadOrCreateUser();
     }, []);
 
