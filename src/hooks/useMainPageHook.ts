@@ -1,8 +1,8 @@
-import { SERVER_URL } from "../../api/requests.tsx";
-import { User } from "../interfaces/interfaces.ts";
-import { useEffect, useState } from "react";
-import { mockUser } from "../mock/mock-data.ts";
-import WebApp from '@twa-dev/sdk'
+import { useEffect, useState } from 'react';
+import { WebApp } from '@twa-dev/sdk';
+import { SERVER_URL } from "../../api/requests";
+import { User } from "../interfaces/interfaces";
+import { mockUser } from "../mock/mock-data";
 
 export const useMainPageHook = () => {
     const [user, setUser] = useState<User>(mockUser);
@@ -50,16 +50,19 @@ export const useMainPageHook = () => {
     };
 
     const loadOrCreateUser = async () => {
-        // Assuming user ID is obtained from another source or context
-		WebApp.ready();
-        const telegramUserId = WebApp.initData.user.id;
-		alert(telegramUserId);
+        const tgData = WebApp.initDataUnsafe;
+        if (!tgData || !tgData.user) {
+            console.error("Telegram WebApp object is not initialized or user data is not available.");
+            return;
+        }
+
+        const telegramUserId = tgData.user.id;
         const response = await fetch<User[]>(`${SERVER_URL}/users`);
         const users = await response.json();
         let resUser = users.find((user: User) => user.id === telegramUserId);
 
         if (!resUser) {
-            resUser = { id: telegramUserId, ...mockUser }; // Використовуйте mockUser для створення нового користувача
+            resUser = { id: telegramUserId, ...mockUser }; // Use mockUser to create a new user
             await fetch(`${SERVER_URL}/users`, {
                 method: 'POST',
                 headers: {
