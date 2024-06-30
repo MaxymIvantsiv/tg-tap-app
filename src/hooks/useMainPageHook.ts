@@ -75,7 +75,7 @@ export const useMainPageHook = () => {
 		console.log(WebApp.initData);
 		console.log(WebApp.initDataUnsafe);
         let telegramUserId = WebApp.initDataUnsafe.user?.id;
-		let telegramUserName = WebApp.initDataUnsafe.user?.id;
+		let telegramUserName = WebApp.initDataUnsafe.user?.first_name;
 		sendMessage('telegram id '+telegramUserId);
         const response = await fetch<User[]>(`${SERVER_URL}/users`);
         const users = await response.json();
