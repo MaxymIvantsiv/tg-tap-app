@@ -105,6 +105,7 @@ export const useMainPageHook = () => {
 	});
     useEffect(() => {
         checkConnection();
+		WebApp.ready();
     }, []);
 	
     return { user, handleButtonTapClick };
