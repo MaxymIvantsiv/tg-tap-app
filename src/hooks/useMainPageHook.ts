@@ -25,7 +25,6 @@ export const useMainPageHook = () => {
     const handleButtonTapClick = async () => {
         if (user) {
             if (user.energyPercent >= 1) {
-				WebApp.showAlert('Tg inited!');
                 user.balance = user.balance + user.oneTapIncome;
                 user.energyPercent = user.energyPercent - 1;
                 setUser({ ...user });
@@ -52,7 +51,7 @@ export const useMainPageHook = () => {
 
     const loadOrCreateUser = async () => {
         // Assuming user ID is obtained from another source or context
-        const telegramUserId = "example_user_id"; // Replace this with actual user ID
+        const telegramUserId = WebApp.initDataUnsafe.user.id;
         const response = await fetch<User[]>(`${SERVER_URL}/users`);
         const users = await response.json();
         let resUser = users.find((user: User) => user.id === telegramUserId);
