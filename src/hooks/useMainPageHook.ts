@@ -78,7 +78,7 @@ export const useMainPageHook = () => {
 		
 		sendMessage('Init Data ' + tgData);
 		sendMessage('Init Data Unsafe ' + tgDataUnsafe);
-		if (tgData != null && tgData.user != null) {
+		if (tgDataUnsafe != null && tgDataUnsafe.user != null) {
 			telegramUserId = tgDataUnsafe.user.id;
 			sendMessage('telegram data finded!');
 		}
@@ -101,10 +101,10 @@ export const useMainPageHook = () => {
     };
 	WebApp.ready(() => {
 		sendMessage('Hello, server!');
+		loadOrCreateUser();
 	});
     useEffect(() => {
         checkConnection();
-        loadOrCreateUser();
     }, []);
 	
     return { user, handleButtonTapClick };
