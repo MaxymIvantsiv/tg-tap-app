@@ -2,8 +2,13 @@ import { SERVER_URL } from "../../api/requests.tsx";
 import { User } from "../interfaces/interfaces.ts";
 import { useEffect, useState } from "react";
 import { mockUser } from "../mock/mock-data.ts";
-//import {WebAppInitData } from "@twa-dev/types";
-import WebApp from '@twa-dev/sdk'
+import { Telegram } from "@twa-dev/types"
+
+declare global {
+  interface Window {
+    Telegram: Telegram;
+  }
+}
 
 export const useMainPageHook = () => {
     const [user, setUser] = useState<User>(mockUser);
@@ -73,8 +78,8 @@ export const useMainPageHook = () => {
 
     const loadOrCreateUser = async () => {
         let telegramUserId = null;
-		let tgData = WebApp.initData;
-	    let tgDataUnsafe = WebApp.initDataUnsafe;
+		let tgData = window.Telegram.WebApp.initData;
+	    let tgDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
 		
 		sendMessage('Init Data ' + tgData);
 		sendMessage('Init Data Unsafe ' + tgDataUnsafe);
@@ -101,15 +106,6 @@ export const useMainPageHook = () => {
     };
     useEffect(() => {
         checkConnection();
-		const script = document.createElement('script');
-		script.src = 'https://telegram.org/js/telegram-web-app.js';
-		script.async = true;
-		window.Telegram.WebApp.ready();
-		script.onload = () => {
-		let user_id = window.Telegram.WebApp.WebAppUser.username;
-		sendMessage('Hello, server! I am ' + user_id);
-    };
-    document.body.appendChild(script);
 		loadOrCreateUser();
     }, []);
 	
