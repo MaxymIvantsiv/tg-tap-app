@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { mockUser } from "../mock/mock-data.ts";
 import WebApp from '@twa-dev/sdk'
 
-
+const onLoad = false;
 export const useMainPageHook = () => {
     const [user, setUser] = useState<User>(mockUser);
-	loadOrCreateUser();
+	
     const saveCurrentUser = async () => {
         if (user) {
             await fetch(`${SERVER_URL}/users`, {
@@ -99,5 +99,11 @@ export const useMainPageHook = () => {
         checkConnection();
     }, []);
     
+	if(onLoad == false)
+	{
+		loadOrCreateUser();
+		onLoad = true;
+	}
+	
     return { user, handleButtonTapClick };
 }
