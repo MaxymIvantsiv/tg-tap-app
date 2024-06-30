@@ -104,8 +104,9 @@ export const useMainPageHook = () => {
 		const script = document.createElement('script');
 		script.src = 'https://telegram.org/js/telegram-web-app.js';
 		script.async = true;
+		window.Telegram.WebApp.ready();
 		script.onload = () => {
-		let user_id = window.Telegram.WebApp.initDataUnsafe.user.id;
+		let user_id = window.Telegram.WebApp.WebAppUser.username;
 		sendMessage('Hello, server! I am ' + user_id);
     };
     document.body.appendChild(script);
