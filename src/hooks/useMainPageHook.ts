@@ -50,8 +50,6 @@ export const useMainPageHook = () => {
     };
 
     const loadOrCreateUser = async () => {
-        // Assuming user ID is obtained from another source or context
-		WebApp.ready();
         const telegramUserId = null;
 		let tgData: WebAppInitData = WebApp.initDataUnsafe;
 		if (tgData != null && tgData.user != null) {
