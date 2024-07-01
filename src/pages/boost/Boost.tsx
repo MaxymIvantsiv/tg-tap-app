@@ -1,15 +1,15 @@
-import {FC, useEffect, useState} from 'react';
-import {Box, ButtonBase, Stack, Typography} from '@mui/material';
-import {NumericFormat} from 'react-number-format';
+import { FC, useEffect, useState } from 'react';
+import { Box, ButtonBase, Stack, Typography } from '@mui/material';
+import { NumericFormat } from 'react-number-format';
 import rocketImage from '../../assets/rocket.png';
-import {BoostAbility, User} from '../../interfaces/interfaces.ts';
+import { BoostAbility, User } from '../../interfaces/interfaces.ts';
 import DollarIcon from '../../assets/dollar.svg?react';
 import ZipperIcon from '../../assets/zipper.svg?react';
 import ArrowIcon from '../../assets/double-arrow.svg?react';
-import {useNavigate} from 'react-router-dom';
-import {containerStyle} from '../../styles/styles.ts';
+import { useNavigate } from 'react-router-dom';
+import { containerStyle } from '../../styles/styles.ts';
 import BoostDialog from './components/BoostDialog.tsx';
-import {GetCurrentUser} from '../../hooks/useMainPageHook.ts'; // Переконайтеся, що шлях відповідає реальній структурі вашого проекту
+import { GetCurrentUser } from '../../hooks/useMainPageHook.ts'; // Переконайтеся, що шлях відповідає реальній структурі вашого проекту
 
 interface Props {}
 
