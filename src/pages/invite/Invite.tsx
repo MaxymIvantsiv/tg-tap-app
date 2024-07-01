@@ -33,7 +33,7 @@ const Invite: FC<Props> = () => {
     const fetchUser = async () => {
       currentUser = await GetCurrentUser();
 	  console.log("Load user");
-	  console.log({currentUser?.friends);
+	  console.log(currentUser.friends);
       setUser(currentUser);
     };
     fetchUser();
