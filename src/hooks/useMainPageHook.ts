@@ -73,9 +73,7 @@ export const useMainPageHook = () => {
             console.error('Error checking connection:', error);
         }
     };
-	export const UserID = () => {
-		return WebApp.initDataUnsafe.user?.id;
-	};
+
     const loadOrCreateUser = async () => {
         try {
             WebApp.expand();
@@ -119,6 +117,10 @@ export const useMainPageHook = () => {
 
         initialize();
     }, []);
-
+	
     return { user, handleButtonTapClick };
 }
+
+export const UserID = () => {
+    return WebApp.initDataUnsafe.user?.id;
+};
