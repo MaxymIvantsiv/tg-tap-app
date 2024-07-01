@@ -19,8 +19,8 @@ export default function BoostDialog(props: SimpleDialogProps) {
   };
 
 const handleUpgrade = () => {
+  console.log(title);
   if (title === "Multitap") {
-  
   } else if (title === "Energy limit") {
 
   }
