@@ -1,33 +1,39 @@
-import {FC, useState} from 'react';
+import {FC, useEffect, useState} from 'react';
 import {Box, ButtonBase, Stack, Typography} from '@mui/material';
 import {NumericFormat} from 'react-number-format';
 import rocketImage from '../../assets/rocket.png';
 import {BoostAbility, User} from '../../interfaces/interfaces.ts';
-import {mockBoost, mockUser} from '../../mock/mock-data.ts';
 import DollarIcon from '../../assets/dollar.svg?react';
 import ZipperIcon from '../../assets/zipper.svg?react';
 import ArrowIcon from '../../assets/double-arrow.svg?react';
 import {useNavigate} from 'react-router-dom';
 import {containerStyle} from '../../styles/styles.ts';
 import BoostDialog from './components/BoostDialog.tsx';
-
-// Шлях до вашого файлу useMainPageHook.ts
-import { useMainPageHook } from '../../hooks/useMainPageHook'; // Переконайтеся, що шлях відповідає реальній структурі вашого проекту
-
-// Використовуємо хук для отримання користувача та обробки кліків
-
+import {GetCurrentUser} from '../../hooks/useMainPageHook.ts'; // Переконайтеся, що шлях відповідає реальній структурі вашого проекту
 
 interface Props {}
 
 const Boost: FC<Props> = () => {
-  const { user, handleButtonTapClick } = useMainPageHook();
-  const [boosts] = useState<BoostAbility[]>(mockBoost);
+  const [user, setUser] = useState<User | null>(null);
   const [selectedBoost, setSelectedBoost] = useState<BoostAbility | undefined>(undefined);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const currentUser = await GetCurrentUser();
+      setUser(currentUser);
+    };
+
+    fetchUser();
+  }, []);
 
   const handleBoostClick = () => {
     navigate('/');
   };
+
+  if (!user) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Stack alignItems="center" pt={1.5} sx={{ position: 'relative' }}>
@@ -43,7 +49,6 @@ const Boost: FC<Props> = () => {
             Прибыль за тап
           </Typography>
           <Stack justifyContent="center" flexDirection="row" gap={0.5}>
-            {' '}
             <DollarIcon />
             <Typography display="inline" color="common.white" fontWeight={800} fontSize={10}>
               +{user.oneTapIncome}
@@ -55,7 +60,6 @@ const Boost: FC<Props> = () => {
             Прибыль в час
           </Typography>
           <Stack justifyContent="center" flexDirection="row" gap={0.5}>
-            {' '}
             <DollarIcon />
             <Typography display="inline" color="common.white" fontWeight={800} fontSize={10}>
               +{user.oneHourIncome}
@@ -88,15 +92,16 @@ const Boost: FC<Props> = () => {
             Full energy
           </Typography>
           <Typography fontWeight={600} fontSize={10} color={'text.secondary'}>
-            6/6 доступно
+            1/6 доступно
           </Typography>
         </Box>
       </Box>
       <Typography fontWeight={800} fontSize={20} color={'common.white'}>
         Прокачай добычу монет!
       </Typography>
-      {boosts.map((boost) => (
+      {user.boostAbility.map((boost) => (
         <ButtonBase
+          key={boost.title}
           sx={{ ...containerStyle, display: 'flex', mt: '10px', alignItems: 'center', height: '65px' }}
           onClick={() => setSelectedBoost(boost)}
         >

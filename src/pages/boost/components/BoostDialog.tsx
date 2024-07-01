@@ -4,6 +4,8 @@ import DollarIcon from '../../../assets/dollar.svg?react';
 import {containerStyle} from '../../../styles/styles.ts';
 import { GetCurrentUser } from '../../hooks/useMainPageHook.ts';
 
+let currentUser = null;
+
 export interface SimpleDialogProps {
   open: boolean;
   onClose: () => void;
@@ -19,6 +21,7 @@ export default function BoostDialog(props: SimpleDialogProps) {
   };
 
 const handleUpgrade = () => {
+  currentUser = await GetCurrentUser();
   console.log(title);
   if (title === "Multitap") {
   } else if (title === "Energy limit") {

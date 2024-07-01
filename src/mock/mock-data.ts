@@ -26,6 +26,7 @@ export const mockBoost: BoostAbility[] = [
     imageUrl: '/src/assets/multitap-boost.svg',
     price: 10,
     level: 1,
+	limit = -1,
   },
   {
     title: 'Energy limit',
@@ -33,6 +34,7 @@ export const mockBoost: BoostAbility[] = [
     imageUrl: '/src/assets/energy-boost.svg',
     price: 10,
     level: 1,
+	limit = 6,
   },
 ];
 
