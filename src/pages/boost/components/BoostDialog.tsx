@@ -1,8 +1,8 @@
-import {Box, Button, Modal, Typography} from '@mui/material';
-import {BoostAbility} from '../../../interfaces/interfaces.ts';
+import { Box, Button, Modal, Typography } from '@mui/material';
+import { BoostAbility } from '../../../interfaces/interfaces.ts';
 import DollarIcon from '../../../assets/dollar.svg?react';
-import {containerStyle} from '../../../styles/styles.ts';
-import { GetCurrentUser } from '../../hooks/useMainPageHook.ts';
+import { containerStyle } from '../../../styles/styles.ts';
+import { GetCurrentUser } from '../../../hooks/useMainPageHook.ts'; // Оновлений шлях
 
 let currentUser = null;
 
@@ -15,7 +15,7 @@ export interface SimpleDialogProps {
 export default function BoostDialog(props: SimpleDialogProps) {
   const { onClose, open, data } = props;
   const { imageUrl, title, price, description, level } = data;
-  
+
   const handleClose = () => {
     onClose();
   };
