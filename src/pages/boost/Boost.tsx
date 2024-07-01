@@ -13,6 +13,8 @@ import { GetCurrentUser } from '../../hooks/useMainPageHook.ts'; // Оновле
 
 interface Props {}
 
+let currentUser = null;
+
 const Boost: FC<Props> = () => {
   const [user, setUser] = useState<User | null>(null);
   const [selectedBoost, setSelectedBoost] = useState<BoostAbility | undefined>(undefined);
@@ -20,7 +22,7 @@ const Boost: FC<Props> = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const currentUser = await GetCurrentUser();
+      currentUser = await GetCurrentUser();
       setUser(currentUser);
     };
 
@@ -130,5 +132,4 @@ const Boost: FC<Props> = () => {
     </Stack>
   );
 };
-
 export default Boost;

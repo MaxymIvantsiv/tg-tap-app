@@ -33,6 +33,7 @@ export default function BoostDialog(props: SimpleDialogProps) {
       currentBoostAbility.level += 1;
 	  currentBoostAbility.price*=2;
       await saveCurrentUser(currentUser);
+	  console.log(currentUser);
     }
   };
 
