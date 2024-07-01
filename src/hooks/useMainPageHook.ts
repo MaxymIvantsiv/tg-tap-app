@@ -136,3 +136,11 @@ export const GetCurrentUser = async (): Promise<User> => {
     const telegramUserId = UserID();
     return users.find(user => user.id === telegramUserId) || mockUser;
 };
+
+export const SaveUser = async (newUser: User) => {
+    try {
+        await saveCurrentUser(newUser);
+    } catch (error) {
+        console.error("Error setting user:", error);
+    }
+};

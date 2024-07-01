@@ -9,7 +9,7 @@ import ArrowIcon from '../../assets/double-arrow.svg?react';
 import { useNavigate } from 'react-router-dom';
 import { containerStyle } from '../../styles/styles.ts';
 import BoostDialog from './components/BoostDialog.tsx';
-import { GetCurrentUser } from '../../hooks/useMainPageHook.ts'; // Оновлений шлях
+import { GetCurrentUser, SaveUser } from '../../hooks/useMainPageHook.ts'; // Оновлений шлях
 
 interface Props {}
 

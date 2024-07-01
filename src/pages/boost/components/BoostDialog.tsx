@@ -2,7 +2,7 @@ import { Box, Button, Modal, Typography } from '@mui/material';
 import { BoostAbility } from '../../../interfaces/interfaces.ts';
 import DollarIcon from '../../../assets/dollar.svg?react';
 import { containerStyle } from '../../../styles/styles.ts';
-import { GetCurrentUser} from '../../../hooks/useMainPageHook.ts'; // Оновлений шлях
+import { GetCurrentUser, SaveUser} from '../../../hooks/useMainPageHook.ts'; // Оновлений шлях
 
 export interface SimpleDialogProps {
   open: boolean;
@@ -33,6 +33,7 @@ export default function BoostDialog(props: SimpleDialogProps) {
       currentBoostAbility.level += 1;
 	  currentBoostAbility.price*=2;
 	  console.log(currentUser);
+	  await SaveUser(currentUser);
     }
   };
 
