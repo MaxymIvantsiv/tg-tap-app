@@ -5,7 +5,8 @@ import {friendsMock} from '../../mock/mock-data.ts';
 import FriendListItem from './components/FriendListItem.tsx';
 import InviteIcon from '../../assets/invite.svg?react';
 import CopyIcon from '../../assets/copy.svg?react';
-import {InviteFriendDialog, InviteLink} from './components/InviteFriendDialog.tsx';
+import InviteFriendDialog from './components/InviteFriendDialog.tsx';
+import {InviteLink} from './components/InviteFriendDialog.tsx';
 
 interface Props {}
 
