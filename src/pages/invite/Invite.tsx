@@ -1,7 +1,6 @@
 import { FC, useState, useEffect } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import OfferListItem from './components/OfferListItem.tsx';
-import { User } from '../../interfaces/interfaces.ts';
 import FriendListItem from './components/FriendListItem.tsx';
 import InviteIcon from '../../assets/invite.svg?react';
 import CopyIcon from '../../assets/copy.svg?react';
@@ -25,7 +24,7 @@ const inviteOffers = [
 
 const Invite: FC<Props> = () => {
   const [selectedBoost, setSelectedBoost] = useState<boolean>(false);
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<any | null>(null); // Вкажіть правильний тип даних для user
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -58,10 +57,10 @@ const Invite: FC<Props> = () => {
         ))}
       </Box>
       <Typography fontWeight={600} fontSize={12} color="common.white" textAlign="start" py={1.5}>
-        Список ваших друзей ({user?.friends.length || 0})
+        Список ваших друзей ({user?.friends?.length || 0})
       </Typography>
       <Box display="flex" flexDirection="column" gap="5px" maxHeight="250px" sx={{ overflowY: 'auto' }}>
-        {user?.friends.map((friend) => (
+        {user?.friends?.map((friend: any) => ( // Вкажіть правильний тип даних для friend
           <FriendListItem key={friend.id} friend={friend} />
         ))}
       </Box>
