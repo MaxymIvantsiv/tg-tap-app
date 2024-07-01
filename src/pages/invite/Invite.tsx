@@ -58,10 +58,10 @@ const Invite: FC<Props> = () => {
         ))}
       </Box>
       <Typography fontWeight={600} fontSize={12} color="common.white" textAlign="start" py={1.5}>
-        Список ваших друзей ({user?.friends?.length || 0})
+        Список ваших друзей ({currentUser?.friends?.length || 0})
       </Typography>
       <Box display="flex" flexDirection="column" gap="5px" maxHeight="250px" sx={{ overflowY: 'auto' }}>
-        {user?.friends?.map((friend: Friend) => ( // Вказуємо правильний тип даних для friend
+        {currentUser?.friends?.map((friend: Friend) => ( // Вказуємо правильний тип даних для friend
           <FriendListItem key={friend.id} friend={friend} />
         ))}
       </Box>
