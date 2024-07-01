@@ -32,8 +32,9 @@ const Invite: FC<Props> = () => {
   useEffect(() => {
     const fetchUser = async () => {
       currentUser = await GetCurrentUser();
-	  console.log("Load user");
 	  console.log(currentUser.friends);
+	  console.log(currentUser.name);
+	  console.log("Load user");
       setUser(currentUser);
     };
     fetchUser();
