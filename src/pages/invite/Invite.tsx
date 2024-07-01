@@ -6,6 +6,7 @@ import InviteIcon from '../../assets/invite.svg?react';
 import CopyIcon from '../../assets/copy.svg?react';
 import InviteFriendDialog, { InviteLink } from './components/InviteFriendDialog.tsx';
 import { GetCurrentUser } from '../../hooks/useMainPageHook.ts';
+import { User, Friend } from '../../interfaces/interfaces.ts'; // Імпорт типів
 
 interface Props {}
 
@@ -24,7 +25,7 @@ const inviteOffers = [
 
 const Invite: FC<Props> = () => {
   const [selectedBoost, setSelectedBoost] = useState<boolean>(false);
-  const [user, setUser] = useState<any | null>(null); // Вкажіть правильний тип даних для user
+  const [user, setUser] = useState<User | null>(null); // Вказуємо правильний тип даних для user
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -60,7 +61,7 @@ const Invite: FC<Props> = () => {
         Список ваших друзей ({user?.friends?.length || 0})
       </Typography>
       <Box display="flex" flexDirection="column" gap="5px" maxHeight="250px" sx={{ overflowY: 'auto' }}>
-        {user?.friends?.map((friend: any) => ( // Вкажіть правильний тип даних для friend
+        {user?.friends?.map((friend: Friend) => ( // Вказуємо правильний тип даних для friend
           <FriendListItem key={friend.id} friend={friend} />
         ))}
       </Box>

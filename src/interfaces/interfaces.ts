@@ -7,6 +7,7 @@ export interface User {
   isAutoRenew: boolean;
   balance: number;
   videoUrls: Video[];
+  friends: Friend[];
 }
 
 export interface Video {
