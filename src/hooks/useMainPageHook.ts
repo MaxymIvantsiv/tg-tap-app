@@ -6,7 +6,24 @@ import WebApp from '@twa-dev/sdk'
 
 export const useMainPageHook = () => {
     const [user, setUser] = useState<User>(mockUser);
-    
+    const saveCurrentUser = async () => {
+        try {
+            if (user) {
+                await fetch(`${SERVER_URL}/users`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(user),
+                });
+                console.log("User saved successfully.");
+            } else {
+                console.error("No user to save.");
+            }
+        } catch (error) {
+            console.error("Error saving user:", error);
+        }
+    };
 
     const sendMessage = async (message: string) => {
         try {
@@ -35,7 +52,7 @@ export const useMainPageHook = () => {
                 user.balance += user.oneTapIncome;
                 user.energyPercent -= 1;
                 setUser({ ...user });
-                await saveCurrentUser(user); // передаємо користувача як аргумент
+                await saveCurrentUser();
             }
         } catch (error) {
             console.error('Error handling button tap click:', error);
@@ -81,7 +98,7 @@ export const useMainPageHook = () => {
                 });
             }
             setUser(resUser);
-            await saveCurrentUser(resUser); // передаємо користувача як аргумент
+            await saveCurrentUser();
         } catch (error) {
             console.error('Error loading or creating user:', error);
         }
@@ -118,24 +135,4 @@ export const GetCurrentUser = async (): Promise<User> => {
     const users: User[] = await response.json();
     const telegramUserId = UserID();
     return users.find(user => user.id === telegramUserId) || mockUser;
-};
-
-export const saveCurrentUser = async (user: User) => {
-	user = await GetCurrentUser();
-    try {
-        if (user) {
-            await fetch(`${SERVER_URL}/users`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(user),
-            });
-            console.log("User saved successfully.");
-        } else {
-            console.error("No user to save.");
-        }
-    } catch (error) {
-        console.error("Error saving user:", error);
-    }
 };
