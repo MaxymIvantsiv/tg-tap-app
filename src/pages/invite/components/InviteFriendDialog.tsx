@@ -13,7 +13,7 @@ export interface SimpleDialogProps {
 
 export const InviteLink = () => {
   let telegramUserId = UserID();
-  return 'https://t.me/taptapproject_bot?start=fren=' + telegramUserId;
+  return 'https://t.me/taptapproject_bot?start=' + telegramUserId;
 };
 
 export default function InviteFriendDialog(props: SimpleDialogProps) {
