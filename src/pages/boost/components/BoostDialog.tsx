@@ -15,22 +15,20 @@ export interface SimpleDialogProps {
 export default function BoostDialog(props: SimpleDialogProps) {
   const { onClose, open, data } = props;
   const { imageUrl, title, price, description, level } = data;
-  useEffect(() => {
-  const fetchUser = async () => {
-   const currentUser = await GetCurrentUser();
-  };
+  
   const handleClose = () => {
     onClose();
   };
 
-const handleUpgrade = () => {
-  currentUser = await GetCurrentUser();
-  console.log(title);
-  if (title === "Multitap") {
-  } else if (title === "Energy limit") {
-
-  }
-};
+  const handleUpgrade = async () => {
+    currentUser = await GetCurrentUser();
+    console.log(title);
+    if (title === "Multitap") {
+      // Логіка для апгрейду Multitap
+    } else if (title === "Energy limit") {
+      // Логіка для апгрейду Energy limit
+    }
+  };
 
   return (
     <Modal onClose={handleClose} open={open}>
@@ -71,7 +69,6 @@ const handleUpgrade = () => {
           </Typography>
         </Box>
         <Button variant="contained" fullWidth size="large" onClick={handleUpgrade}>
-		
           <Typography fontWeight={600} fontSize={12} color={'common.white'} display="inline" textTransform="none">
             Получить
           </Typography>
