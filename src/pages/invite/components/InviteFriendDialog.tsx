@@ -1,8 +1,9 @@
-import {Box, Button, IconButton, InputAdornment, Modal, TextField, Typography} from '@mui/material';
-// import {BoostAbility} from "../../../interfaces/interfaces.ts";
-import {containerStyle} from '../../../styles/styles.ts';
+import { Box, Button, IconButton, InputAdornment, Modal, TextField, Typography } from '@mui/material';
+// import { BoostAbility } from "../../../interfaces/interfaces.ts";
+import { containerStyle } from '../../../styles/styles.ts';
 import CopyIcon from '../../../assets/copy.svg?react';
 import SendInvite from '../../../assets/send-invite.svg?react';
+import { UserID, OpenLink } from '../../../hooks/useMainPageHook.ts'; // Іменований імпорт
 
 export interface SimpleDialogProps {
   open: boolean;
@@ -10,18 +11,28 @@ export interface SimpleDialogProps {
   // data: BoostAbility;
 }
 
+export const InviteLink = () => {
+  let telegramUserId = UserID();
+  return 'https://t.me/taptapproject_bot?start=fren=' + telegramUserId;
+};
+
 export default function InviteFriendDialog(props: SimpleDialogProps) {
   const { onClose, open } = props;
 
   const handleClose = () => {
     onClose();
   };
+
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText('https://t.me/');
+      await navigator.clipboard.writeText(InviteLink()); // Виклик функції
     } catch (err) {
       console.error('Failed to copy text: ', err);
     }
+  };
+
+  const handleSendInvite = () => {
+    OpenLink("https://t.me/share/url?url=" + InviteLink()); // Виклик функції
   };
 
   return (
@@ -39,7 +50,6 @@ export default function InviteFriendDialog(props: SimpleDialogProps) {
           left: '50%',
           transform: 'translate(-50%, -50%)',
           width: '350px',
-          // height: '200px',
           px: 2,
           py: 1,
           pb: 3,
@@ -54,12 +64,12 @@ export default function InviteFriendDialog(props: SimpleDialogProps) {
         </Typography>
         <TextField
           size="small"
-          value="https://t.me/"
+          value={InviteLink()} // Виклик функції
           fullWidth
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton edge="end" onClick={() => handleCopy()}>
+                <IconButton edge="end" onClick={handleCopy}>
                   <CopyIcon />
                 </IconButton>
               </InputAdornment>
@@ -67,7 +77,7 @@ export default function InviteFriendDialog(props: SimpleDialogProps) {
             readOnly: true,
           }}
         />
-        <Button variant="contained" fullWidth size="large">
+        <Button variant="contained" fullWidth size="large" onClick={handleSendInvite}>
           <SendInvite />
           <Typography
             fontWeight={600}

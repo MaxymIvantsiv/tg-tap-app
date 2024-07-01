@@ -124,3 +124,8 @@ export const useMainPageHook = () => {
 export const UserID = () => {
     return WebApp.initDataUnsafe.user?.id;
 };
+
+export const OpenLink = (link) => {
+WebApp.openTelegramLink(link);
+    return link;
+};

@@ -5,8 +5,7 @@ import {friendsMock} from '../../mock/mock-data.ts';
 import FriendListItem from './components/FriendListItem.tsx';
 import InviteIcon from '../../assets/invite.svg?react';
 import CopyIcon from '../../assets/copy.svg?react';
-import InviteFriendDialog from './components/InviteFriendDialog.tsx';
-import { UserID } from '../../hooks/useMainPageHook.ts'; // Іменований імпорт
+import {InviteFriendDialog, InviteLink} from './components/InviteFriendDialog.tsx';
 
 interface Props {}
 
@@ -27,8 +26,8 @@ const Invite: FC<Props> = () => {
   const [selectedBoost, setSelectedBoost] = useState<boolean>(false);
   const handleCopy = async () => {
     try {
-		let telegramUserId = UserID();
-		await navigator.clipboard.writeText('https://t.me/share/url?url=https://t.me/taptapproject_bot?start=fren=' + telegramUserId);
+		let copyLink = InviteLink();
+		await navigator.clipboard.writeText(copyLink);
     } catch (err) {
       console.error('Failed to copy text: ', err);
     }
