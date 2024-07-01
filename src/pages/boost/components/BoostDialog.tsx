@@ -15,7 +15,10 @@ export interface SimpleDialogProps {
 export default function BoostDialog(props: SimpleDialogProps) {
   const { onClose, open, data } = props;
   const { imageUrl, title, price, description, level } = data;
-
+  useEffect(() => {
+  const fetchUser = async () => {
+   const currentUser = await GetCurrentUser();
+  };
   const handleClose = () => {
     onClose();
   };
