@@ -6,24 +6,7 @@ import WebApp from '@twa-dev/sdk'
 
 export const useMainPageHook = () => {
     const [user, setUser] = useState<User>(mockUser);
-    const saveCurrentUser = async () => {
-        try {
-            if (user) {
-                await fetch(`${SERVER_URL}/users`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(user),
-                });
-                console.log("User saved successfully.");
-            } else {
-                console.error("No user to save.");
-            }
-        } catch (error) {
-            console.error("Error saving user:", error);
-        }
-    };
+    
 
     const sendMessage = async (message: string) => {
         try {
@@ -136,3 +119,22 @@ export const GetCurrentUser = async (): Promise<User> => {
     const telegramUserId = UserID();
     return users.find(user => user.id === telegramUserId) || mockUser;
 };
+
+export const saveCurrentUser = async () => {
+        try {
+            if (user) {
+                await fetch(`${SERVER_URL}/users`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(user),
+                });
+                console.log("User saved successfully.");
+            } else {
+                console.error("No user to save.");
+            }
+        } catch (error) {
+            console.error("Error saving user:", error);
+        }
+    };

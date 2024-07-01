@@ -2,9 +2,7 @@ import { Box, Button, Modal, Typography } from '@mui/material';
 import { BoostAbility } from '../../../interfaces/interfaces.ts';
 import DollarIcon from '../../../assets/dollar.svg?react';
 import { containerStyle } from '../../../styles/styles.ts';
-import { GetCurrentUser } from '../../../hooks/useMainPageHook.ts'; // Оновлений шлях
-
-let currentUser = null;
+import { GetCurrentUser, saveCurrentUser } from '../../../hooks/useMainPageHook.ts'; // Оновлений шлях
 
 export interface SimpleDialogProps {
   open: boolean;
@@ -21,12 +19,19 @@ export default function BoostDialog(props: SimpleDialogProps) {
   };
 
   const handleUpgrade = async () => {
-    currentUser = await GetCurrentUser();
+    const currentUser = await GetCurrentUser();
     console.log(title);
-    if (title === "Multitap") {
-      // Логіка для апгрейду Multitap
-    } else if (title === "Energy limit") {
-      // Логіка для апгрейду Energy limit
+    
+    const currentBoostAbility = currentUser.boostAbility.find(boost => boost.title === title);
+    if (currentBoostAbility && currentUser.balance >= currentBoostAbility.price) {
+      currentUser.balance -= currentBoostAbility.price;
+      if (title === "Multitap") {
+        currentUser.oneTapIncome *= 2;
+      } else if (title === "Energy limit") {
+        // Логіка для апгрейду Energy limit
+      }
+      currentBoostAbility.level += 1;
+      await saveCurrentUser(currentUser);
     }
   };
 
