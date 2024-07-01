@@ -129,3 +129,10 @@ export const OpenLink = (link) => {
 WebApp.openTelegramLink(link);
     return link;
 };
+
+export const GetCurrentUser = async (): Promise<User> => {
+    const response = await fetch(`${SERVER_URL}/users`);
+    const users: User[] = await response.json();
+    const telegramUserId = UserID();
+    return users.find(user => user.id === telegramUserId) || mockUser;
+};
