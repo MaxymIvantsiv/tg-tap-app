@@ -11,7 +11,7 @@ import { User, Friend } from '../../interfaces/interfaces.ts'; // Імпорт �
 interface Props {}
 
 let currentUser = null;
-currentUser = await GetCurrentUser();
+
 const inviteOffers = [
   {
     title: 'Пригласить друга',
@@ -32,6 +32,7 @@ const Invite: FC<Props> = () => {
   useEffect(() => {
     const fetchUser = async () => {
       currentUser = await GetCurrentUser();
+	  console.log("Load user");
       setUser(currentUser);
     };
     fetchUser();
