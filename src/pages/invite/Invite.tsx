@@ -28,7 +28,7 @@ const Invite: FC<Props> = () => {
   const handleCopy = async () => {
     try {
 		let telegramUserId = UserID;
-		await navigator.clipboard.writeText('https://t.me/share/url?url=https://t.me/taptapproject_bot?start=fren=${telegramUserId}');
+		await navigator.clipboard.writeText('https://t.me/share/url?url=https://t.me/taptapproject_bot?start=fren=' + telegramUserId);
     } catch (err) {
       console.error('Failed to copy text: ', err);
     }
