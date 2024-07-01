@@ -6,7 +6,7 @@ import FriendListItem from './components/FriendListItem.tsx';
 import InviteIcon from '../../assets/invite.svg?react';
 import CopyIcon from '../../assets/copy.svg?react';
 import InviteFriendDialog from './components/InviteFriendDialog.tsx';
-import UserID from '../../hooks/useMainPageHook.ts';
+import { UserID } from '../../hooks/useMainPageHook.ts'; // Іменований імпорт
 
 interface Props {}
 
