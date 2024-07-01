@@ -6,7 +6,7 @@ import FriendListItem from './components/FriendListItem.tsx';
 import InviteIcon from '../../assets/invite.svg?react';
 import CopyIcon from '../../assets/copy.svg?react';
 import InviteFriendDialog from './components/InviteFriendDialog.tsx';
-import WebApp from '../../hooks/useMainPageHook.ts';
+import UserID from '../../hooks/useMainPageHook.ts';
 
 interface Props {}
 
@@ -27,7 +27,7 @@ const Invite: FC<Props> = () => {
   const [selectedBoost, setSelectedBoost] = useState<boolean>(false);
   const handleCopy = async () => {
     try {
-		let telegramUserId = WebApp.initDataUnsafe.user?.id;
+		let telegramUserId = UserID;
 		await navigator.clipboard.writeText('https://t.me/share/url?url=https://t.me/taptapproject_bot?start=fren=${telegramUserId}');
     } catch (err) {
       console.error('Failed to copy text: ', err);

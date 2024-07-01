@@ -6,7 +6,6 @@ import WebApp from '@twa-dev/sdk'
 
 export const useMainPageHook = () => {
     const [user, setUser] = useState<User>(mockUser);
-
     const saveCurrentUser = async () => {
         try {
             if (user) {
@@ -74,7 +73,9 @@ export const useMainPageHook = () => {
             console.error('Error checking connection:', error);
         }
     };
-
+	export const UserID = () => {
+		return WebApp.initDataUnsafe.user?.id;
+	};
     const loadOrCreateUser = async () => {
         try {
             WebApp.expand();
