@@ -27,8 +27,10 @@ export default function BoostDialog(props: SimpleDialogProps) {
       currentUser.balance -= currentBoostAbility.price;
       if (title === "Multitap") {
         currentUser.oneTapIncome *= 2;
+		console.log("Multitap Upgrade");
       } else if (title === "Energy limit") {
         // Логіка для апгрейду Energy limit
+		console.log("Energy Upgrade");
       }
       currentBoostAbility.level += 1;
 	  currentBoostAbility.price*=2;
