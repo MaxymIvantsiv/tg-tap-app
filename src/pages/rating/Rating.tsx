@@ -18,11 +18,13 @@ const Rating: FC<Props> = () => {
 
         // Додаємо нових користувачів до існуючого масиву ratingData.users
         const updatedUsers = [...ratingData.users];
-        users.forEach((user, index) => {
+        users.forEach((user) => {
           const newUser = { ...user }; // створюємо новий об'єкт, щоб не змінювати оригінальний
           newUser.id = user.id;
           newUser.username = user.name || `User${updatedUsers.length + 1}`;
-          newUser.refAmount = user.balance || 0;
+
+          // Рахуємо суму нагород друзів користувача
+          newUser.refAmount = user.friends ? user.friends.reduce((sum, friend) => sum + (friend.award || 0), 0) : 0;
 
           const existingUser = updatedUsers.find(existingUser => existingUser.id === newUser.id);
           if (!existingUser) {

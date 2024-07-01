@@ -2,6 +2,7 @@ import {Box, Button, Modal, Typography} from '@mui/material';
 import {BoostAbility} from '../../../interfaces/interfaces.ts';
 import DollarIcon from '../../../assets/dollar.svg?react';
 import {containerStyle} from '../../../styles/styles.ts';
+import { GetCurrentUser } from '../../hooks/useMainPageHook.ts';
 
 export interface SimpleDialogProps {
   open: boolean;
@@ -16,6 +17,14 @@ export default function BoostDialog(props: SimpleDialogProps) {
   const handleClose = () => {
     onClose();
   };
+
+const handleUpgrade = () => {
+  if (title === "Multitap") {
+  
+  } else if (title === "Energy limit") {
+
+  }
+};
 
   return (
     <Modal onClose={handleClose} open={open}>
@@ -55,7 +64,8 @@ export default function BoostDialog(props: SimpleDialogProps) {
             • {level} lvl
           </Typography>
         </Box>
-        <Button variant="contained" fullWidth size="large">
+        <Button variant="contained" fullWidth size="large" onClick={handleUpgrade}>
+		
           <Typography fontWeight={600} fontSize={12} color={'common.white'} display="inline" textTransform="none">
             Получить
           </Typography>
