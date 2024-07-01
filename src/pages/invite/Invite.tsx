@@ -6,7 +6,7 @@ import FriendListItem from './components/FriendListItem.tsx';
 import InviteIcon from '../../assets/invite.svg?react';
 import CopyIcon from '../../assets/copy.svg?react';
 import InviteFriendDialog, { InviteLink } from './components/InviteFriendDialog.tsx';
-import { GetCurrentUser } from '../../../hooks/useMainPageHook.ts';
+import { GetCurrentUser } from '../../hooks/useMainPageHook.ts';
 
 interface Props {}
 
