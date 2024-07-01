@@ -2,19 +2,20 @@ import { SERVER_URL } from "../../api/requests.tsx";
 import { User } from "../interfaces/interfaces.ts";
 import { useEffect, useState } from "react";
 import { mockUser } from "../mock/mock-data.ts";
-import WebApp from '@twa-dev/sdk'
+import WebApp from '@twa-dev/sdk';
 
 export const useMainPageHook = () => {
     const [user, setUser] = useState<User>(mockUser);
-    const saveCurrentUser = async () => {
+
+    const saveCurrentUser = async (currentUser: User) => {
         try {
-            if (user) {
+            if (currentUser) {
                 await fetch(`${SERVER_URL}/users`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(user),
+                    body: JSON.stringify(currentUser),
                 });
                 console.log("User saved successfully.");
             } else {
@@ -52,7 +53,7 @@ export const useMainPageHook = () => {
                 user.balance += user.oneTapIncome;
                 user.energyPercent -= 1;
                 setUser({ ...user });
-                await saveCurrentUser();
+                await saveCurrentUser(user);
             }
         } catch (error) {
             console.error('Error handling button tap click:', error);
@@ -98,7 +99,7 @@ export const useMainPageHook = () => {
                 });
             }
             setUser(resUser);
-            await saveCurrentUser();
+            await saveCurrentUser(resUser);
         } catch (error) {
             console.error('Error loading or creating user:', error);
         }
@@ -118,7 +119,7 @@ export const useMainPageHook = () => {
         initialize();
     }, []);
 	
-    return { user, handleButtonTapClick };
+    return { user, handleButtonTapClick, saveCurrentUser };
 }
 
 export const UserID = () => {
@@ -126,7 +127,7 @@ export const UserID = () => {
 };
 
 export const OpenLink = (link) => {
-WebApp.openTelegramLink(link);
+    WebApp.openTelegramLink(link);
     return link;
 };
 
@@ -137,7 +138,7 @@ export const GetCurrentUser = async (): Promise<User> => {
     return users.find(user => user.id === telegramUserId) || mockUser;
 };
 
-export const SaveUser = async (newUser: User) => {
+export const SetUser = async (newUser: User) => {
     try {
         await saveCurrentUser(newUser);
     } catch (error) {

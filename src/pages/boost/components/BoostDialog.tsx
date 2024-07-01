@@ -2,7 +2,7 @@ import { Box, Button, Modal, Typography } from '@mui/material';
 import { BoostAbility } from '../../../interfaces/interfaces.ts';
 import DollarIcon from '../../../assets/dollar.svg?react';
 import { containerStyle } from '../../../styles/styles.ts';
-import { GetCurrentUser, SaveUser} from '../../../hooks/useMainPageHook.ts'; // Оновлений шлях
+import { GetCurrentUser, useMainPageHook } from '../../../hooks/useMainPageHook.ts'; // Оновлений шлях
 
 export interface SimpleDialogProps {
   open: boolean;
@@ -13,6 +13,7 @@ export interface SimpleDialogProps {
 export default function BoostDialog(props: SimpleDialogProps) {
   const { onClose, open, data } = props;
   const { imageUrl, title, price, description, level } = data;
+  const { saveCurrentUser } = useMainPageHook();
 
   const handleClose = () => {
     onClose();
@@ -27,15 +28,14 @@ export default function BoostDialog(props: SimpleDialogProps) {
       currentUser.balance -= currentBoostAbility.price;
       if (title === "Multitap") {
         currentUser.oneTapIncome *= 2;
-		console.log("Multitap Upgrade");
+        console.log("Multitap Upgrade");
       } else if (title === "Energy limit") {
-        // Логіка для апгрейду Energy limit
-		console.log("Energy Upgrade");
+        console.log("Energy Upgrade");
       }
       currentBoostAbility.level += 1;
-	  currentBoostAbility.price*=2;
-	  console.log(currentUser);
-	  await SaveUser(currentUser);
+      currentBoostAbility.price *= 2;
+      console.log(currentUser);
+      await saveCurrentUser(currentUser);
     }
   };
 
@@ -54,7 +54,6 @@ export default function BoostDialog(props: SimpleDialogProps) {
           left: '50%',
           transform: 'translate(-50%, -50%)',
           width: '350px',
-          // height: '200px',
           px: 2,
           py: 1,
           pb: 3,
