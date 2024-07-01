@@ -121,6 +121,7 @@ export const GetCurrentUser = async (): Promise<User> => {
 };
 
 export const saveCurrentUser = async (user: User) => {
+	user = await GetCurrentUser();
     try {
         if (user) {
             await fetch(`${SERVER_URL}/users`, {

@@ -31,6 +31,7 @@ export default function BoostDialog(props: SimpleDialogProps) {
         // Логіка для апгрейду Energy limit
       }
       currentBoostAbility.level += 1;
+	  currentBoostAbility.price*=2;
       await saveCurrentUser(currentUser);
     }
   };
