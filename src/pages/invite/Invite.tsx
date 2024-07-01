@@ -1,12 +1,12 @@
-import {FC, useState} from 'react';
-import {Box, Button, Typography} from '@mui/material';
+import { FC, useState, useEffect } from 'react';
+import { Box, Button, Typography } from '@mui/material';
 import OfferListItem from './components/OfferListItem.tsx';
-import {friendsMock} from '../../mock/mock-data.ts';
+import { User } from '../../interfaces/interfaces.ts';
 import FriendListItem from './components/FriendListItem.tsx';
 import InviteIcon from '../../assets/invite.svg?react';
 import CopyIcon from '../../assets/copy.svg?react';
-import InviteFriendDialog from './components/InviteFriendDialog.tsx';
-import {InviteLink} from './components/InviteFriendDialog.tsx';
+import InviteFriendDialog, { InviteLink } from './components/InviteFriendDialog.tsx';
+import { GetCurrentUser } from '../../../hooks/useMainPageHook.ts';
 
 interface Props {}
 
@@ -25,10 +25,20 @@ const inviteOffers = [
 
 const Invite: FC<Props> = () => {
   const [selectedBoost, setSelectedBoost] = useState<boolean>(false);
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const currentUser = await GetCurrentUser();
+      setUser(currentUser);
+    };
+    fetchUser();
+  }, []);
+
   const handleCopy = async () => {
     try {
-		let copyLink = InviteLink();
-		await navigator.clipboard.writeText(copyLink);
+      let copyLink = InviteLink();
+      await navigator.clipboard.writeText(copyLink);
     } catch (err) {
       console.error('Failed to copy text: ', err);
     }
@@ -48,10 +58,10 @@ const Invite: FC<Props> = () => {
         ))}
       </Box>
       <Typography fontWeight={600} fontSize={12} color="common.white" textAlign="start" py={1.5}>
-        Список ваших друзей ({friendsMock.length})
+        Список ваших друзей ({user?.friends.length || 0})
       </Typography>
       <Box display="flex" flexDirection="column" gap="5px" maxHeight="250px" sx={{ overflowY: 'auto' }}>
-        {friendsMock.map((friend) => (
+        {user?.friends.map((friend) => (
           <FriendListItem key={friend.id} friend={friend} />
         ))}
       </Box>
@@ -77,7 +87,7 @@ const Invite: FC<Props> = () => {
             minHeight: 0,
             minWidth: 0,
           }}
-          onClick={() => handleCopy()}
+          onClick={handleCopy}
         >
           <CopyIcon fill={'#fff'} />
         </Button>
